@@ -4,7 +4,8 @@
 			<span>工作台</span>
 			<span class="iconfont">&#xeba9;</span>
 		</header>
-    <div class="box">
+		<tet :com-data="comData" @showbox="tetFun"></tet>
+		<div class="box">
 			<div class="list-box">
 				<span class="iconfont">&#xeba0;</span>
 				<div>企业管理</div>
@@ -60,11 +61,21 @@
 </template>
 
 <script>
+import tet from '../com/text'
 export default {
   name: 'workbench',
+  components: {
+	tet
+  },
   data () {
     return {
-      
+      comData: {
+      	name: '用户名',
+      	value: '',
+      	placeholder: '请输入用户名',
+      	isRequired: true,
+      	icon: 'icjd'
+      }
     }
   },
 	computed: {
@@ -78,6 +89,11 @@ export default {
 		var dcmHeight = document.documentElement.clientHeight
 		var wrapHeight = dcmHeight - this.domHeight
 		box.style.height = wrapHeight + 'px'
+	},
+	methods: {
+		tetFun: function (val) {
+			console.log(val.value)
+		}
 	}
 }
 </script>
